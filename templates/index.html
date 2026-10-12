@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vihara Tech | Salary Prediction</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 15px;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #f3f6fb;
+            color: #263449;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border: 1px solid #e1e7f0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(31, 52, 82, 0.07);
+        }
+
+        .header {
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-bottom: 1px solid #e8edf4;
+        }
+
+        .logo {
+            width: 46px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            background: #234a84;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .brand h2 {
+            font-size: 21px;
+            color: #234a84;
+            letter-spacing: 0.3px;
+        }
+
+        .brand p {
+            margin-top: 5px;
+            font-size: 12px;
+            color: #7b8798;
+        }
+
+        .main {
+            padding: 35px 30px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .subtitle {
+            max-width: 390px;
+            margin: 0 auto 28px;
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .form-box {
+            padding: 24px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 9px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #1e293b;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input[type="number"]:focus {
+            border-color: #3768a8;
+            box-shadow: 0 0 0 3px rgba(55, 104, 168, 0.10);
+        }
+
+        input::placeholder {
+            color: #9aa5b4;
+        }
+
+        .hint {
+            margin-top: 8px;
+            color: #7b8798;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .predict-btn {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            background: #234a84;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .predict-btn:hover {
+            background: #193966;
+        }
+
+        .predict-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+
+        .reset {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            color: #3768a8;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .reset:hover {
+            text-decoration: underline;
+        }
+
+        .result {
+            margin-top: 22px;
+            padding: 22px;
+            text-align: center;
+            background: #eef5ff;
+            border: 1px solid #d5e5fb;
+            border-radius: 8px;
+        }
+
+        .result h3 {
+            margin-bottom: 10px;
+            color: #234a84;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .salary {
+            color: #1e3a5f;
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .result p {
+            margin-top: 9px;
+            color: #718096;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .error {
+            margin-top: 18px;
+            padding: 12px;
+            border: 1px solid #fecaca;
+            border-radius: 6px;
+            background: #fef2f2;
+            color: #b91c1c;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            padding: 17px 20px;
+            border-top: 1px solid #e8edf4;
+            text-align: center;
+            color: #8490a0;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #234a84;
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px;
+            }
+
+            .main {
+                padding: 27px 18px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .form-box {
+                padding: 19px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div class="logo">V</div>
+
+        <div class="brand">
+            <h2>VIHARA TECH</h2>
+            <p>Machine Learning Project</p>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <h1 class="title">Salary Prediction</h1>
+
+        <p class="subtitle">
+            Estimate your salary based on your years of professional
+            experience using machine learning.
+        </p>
+
+        <section class="form-box">
+
+            <form action="{{ url_for('predict') }}"
+                  method="POST"
+                  id="prediction-form">
+
+                <label for="experience">
+                    Years of Experience
+                </label>
+
+                <input
+                    type="number"
+                    id="experience"
+                    name="experience"
+                    min="0"
+                    max="80"
+                    step="any"
+                    placeholder="Enter years of experience"
+                    value="{{ experience if experience is not none else '' }}"
+                    required
+                >
+
+                <p class="hint">
+                    Example: 1, 2.5 or 5 years
+                </p>
+
+                <button type="submit"
+                        class="predict-btn"
+                        id="predict-button">
+                    Predict Salary
+                </button>
+
+                <a href="{{ url_for('home') }}" class="reset">
+                    Clear and try again
+                </a>
+
+            </form>
+
+            {% if error %}
+                <div class="error" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+
+        </section>
+
+        {% if prediction_text is not none %}
+            <section class="result" aria-live="polite">
+                <h3>Predicted Salary</h3>
+
+                <div class="salary">{{ prediction_text }}</div>
+
+                <p>
+                    This is an estimated result generated by the
+                    trained machine learning model.
+                </p>
+            </section>
+        {% endif %}
+
+    </main>
+
+    <footer class="footer">
+        Project by <strong>Sharvan</strong> ·
+        <strong>Vihara Tech</strong> · 2026
+    </footer>
+
+</div>
+
+<script>
+    const form = document.getElementById("prediction-form");
+    const button = document.getElementById("predict-button");
+
+    form.addEventListener("submit", function () {
+        if (form.checkValidity()) {
+            button.disabled = true;
+            button.textContent = "Predicting...";
+        }
+    });
+</script>
+
+</body>
+</html>
